@@ -8,7 +8,6 @@ from aiohttp.web import Response, HTTPBadRequest
 from pathlib import Path
 
 from context_holder import ContextHolder
-from repositories import emoji_log_repository
 
 
 async def generate(request):
@@ -127,20 +126,6 @@ async def _execute(request, download_fg=False):
         print(err)
         print('color:{}\tbackground_color:{}'.format(color, background_color))
         return HTTPBadRequest()
-
-    # 生成ログを記録
-    if download_fg:
-        await emoji_log_repository.add({
-            'text': text,
-            'color': color,
-            'back_color': background_color,
-            'font': font['key'],
-            'size_fixed': size_fixed,
-            'align': align,
-            'stretch': not disable_stretch,
-            'public_fg': public_fg,
-            'locale': locale,
-        })
 
     headers = {}
     if download_fg:
