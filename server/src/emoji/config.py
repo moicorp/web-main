@@ -5,7 +5,6 @@ from pathlib import Path
 
 def load_config():
     project_path = str(Path(__file__).resolve().parents[2])
-    assets_path = str(Path(project_path).joinpath('assets'))
     config_path = str(Path(project_path).joinpath('config'))
 
     default_config_path = str(Path(config_path).joinpath('default.yml'))
@@ -22,17 +21,7 @@ def load_config():
     if isinstance(local_config, dict):
         config.update(local_config)
 
-    # config/assets.yml
-    assets_config_path = str(Path(config_path).joinpath('assets.yml'))
-    try:
-        assets_config = yaml.full_load(open(assets_config_path, 'r', encoding='utf-8'))
-    except FileNotFoundError:
-        assets_config = None
-    if isinstance(assets_config, dict):
-        config.update(assets_config)
-
     config['project_path'] = project_path
-    config['assets_path'] = assets_path
     config['config_path'] = config_path
 
     return config
