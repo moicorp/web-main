@@ -8,7 +8,6 @@ from aiohttp.web import Application
 from config import Config
 from context_holder import ContextHolder
 from locales import Locales
-from mysql import MySQL
 from web import controllers, htmlmin, jinja2
 
 from emoji.config import load_config
@@ -34,7 +33,6 @@ class Context():
         app['config'] = old_config
 
         self._config = Config(is_dev=is_dev)
-        self._mysql = MySQL(self._config.mysql_config)
         self._locales = Locales(self._config.locales_config)
 
         self.is_dev = is_dev
@@ -42,7 +40,6 @@ class Context():
 
 
     async def startup(self):
-        await self._mysql.startup()
         await self._locales.startup()
 
         controllers.startup(self.app)
@@ -52,7 +49,7 @@ class Context():
 
 
     def cleanup(self, app):
-        self._mysql.cleanup()
+        pass
 
     @property
     def is_prod(self):
@@ -65,7 +62,3 @@ class Context():
     @property
     def locales(self):
         return self._locales
-
-    @property
-    def mysql(self):
-        return self._mysql

@@ -1,8 +1,2 @@
 debug: true
 base_url: 'http://localhost:5000'
-
-mysql:
-  user: root
-  db: emoji
-  host: localhost
-  password:
