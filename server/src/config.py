@@ -6,7 +6,7 @@ import yaml
 
 
 class Config():
-    def __init__(self, *, is_dev):
+    def __init__(self):
         self.path_config = PathConfig()
         self.fonts_config = FontsConfig(path_config=self.path_config)
         self.locales_config = LocalesConfig()

@@ -25,13 +25,10 @@ class Context():
 
     def __init__(self):
         is_dev = os.getenv('PYTHON_ENV') != 'production'
-
         app = Application(debug=is_dev)
+        app['config'] = load_config()
 
-        old_config = load_config()
-        app['config'] = old_config
-
-        self._config = Config(is_dev=is_dev)
+        self._config = Config()
         self._locales = Locales(self._config.locales_config)
         self.app = app
 
