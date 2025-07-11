@@ -34,8 +34,6 @@ class Context():
 
         self._config = Config(is_dev=is_dev)
         self._locales = Locales(self._config.locales_config)
-
-        self.is_dev = is_dev
         self.app = app
 
 
@@ -44,10 +42,6 @@ class Context():
 
     def cleanup(self, app):
         pass
-
-    @property
-    def is_prod(self):
-        return not self.is_dev
 
     @property
     def config(self):
