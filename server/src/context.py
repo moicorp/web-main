@@ -40,7 +40,6 @@ class Context():
 
 
     async def startup(self):
-        await self._locales.startup()
         controllers.startup(self.app)
 
     def cleanup(self, app):

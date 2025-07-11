@@ -10,7 +10,7 @@ class Config():
         self.path_config = PathConfig()
         self.app_config = AppConfig(path_config=self.path_config, is_dev=is_dev)
         self.fonts_config = FontsConfig(path_config=self.path_config)
-        self.locales_config = LocalesConfig(path_config=self.path_config)
+        self.locales_config = LocalesConfig()
 
 
 # ---------------------------------------------------------
@@ -64,9 +64,6 @@ class PathConfig():
 # ---------------------------------------------------------
 
 class LocalesConfig():
-    def __init__(self, *, path_config):
-        self.locales_path = path_config.project_path.joinpath('locales')
-
     @property
     def locales(self):
         return ['ja', 'ko', 'zh-Hans', 'zh-Hant', 'en']
