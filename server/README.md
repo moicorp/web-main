@@ -8,7 +8,7 @@ Server-side - Emoji Generator
 ### Getting started
 
 ```
-$ ./script/pip-install.sh
+$ pip install -r requirements.txt
 $ python app.py
 ```
 
