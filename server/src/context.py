@@ -8,7 +8,7 @@ from aiohttp.web import Application
 from config import Config
 from context_holder import ContextHolder
 from locales import Locales
-from web import controllers, htmlmin, jinja2
+from web import controllers
 
 from emoji.config import load_config
 
@@ -41,12 +41,7 @@ class Context():
 
     async def startup(self):
         await self._locales.startup()
-
         controllers.startup(self.app)
-        jinja2.startup(self.app, self._config, self._locales)
-        htmlmin.startup(self.app)
-
-
 
     def cleanup(self, app):
         pass

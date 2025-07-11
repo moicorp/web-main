@@ -1,9 +1,7 @@
 aiohttp
-aiohttp-jinja2
 chardet
 emojilib
 funcy
-htmlmin
 PyYAML
 yarl
 ecode
