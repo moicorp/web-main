@@ -27,7 +27,6 @@ class Context():
         is_dev = os.getenv('PYTHON_ENV') != 'production'
 
         app = Application(debug=is_dev)
-        app.on_cleanup.append(self.cleanup)
 
         old_config = load_config()
         app['config'] = old_config
@@ -39,9 +38,6 @@ class Context():
 
     async def startup(self):
         controllers.startup(self.app)
-
-    def cleanup(self, app):
-        pass
 
     @property
     def config(self):
