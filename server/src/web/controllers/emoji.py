@@ -100,6 +100,9 @@ async def _execute(request, download_fg=False):
     text = request.query.get('text', default_text)
     color = request.query.get('color', default_color).upper()
     background_color = request.query.get('back_color', default_background_color).upper()
+    width = int(request.query.get('width', '128'))
+    height = int(request.query.get('height', '128'))
+    img_format = request.query.get('format', 'png')
     size_fixed = request.query.get('size_fixed',default='false').lower() == 'true'
     align = request.query.get('align', 'center').lower()
     disable_stretch = request.query.get('stretch', 'true').lower() == 'false'
@@ -112,15 +115,15 @@ async def _execute(request, download_fg=False):
     try:
         img_data = emojilib.generate(
             text=text,
-            width=128,
-            height=128,
+            width=width,
+            height=height,
             color=color,
             background_color=background_color,
             size_fixed=size_fixed,
             disable_stretch=disable_stretch,
             align=align,
             typeface_file=font_path,
-            format='png'
+            format=img_format
         )
     except Exception as err:
         print(err)
@@ -129,7 +132,7 @@ async def _execute(request, download_fg=False):
 
     headers = {}
     if download_fg:
-        desposition = 'attachment; filename=\"{}.png\"'.format(re.sub(r'\s','_',text))
+        desposition = 'attachment; filename=\"{}.{}\"'.format(re.sub(r'\s','_',text), img_format)
         headers['Content-Disposition'] = desposition
         headers['Cache-Control'] = 'private, no-store, no-cache, must-revalidate'
     else:
@@ -141,5 +144,5 @@ async def _execute(request, download_fg=False):
     return Response(
         body=img_data,
         headers=headers,
-        content_type='image/png'
+        content_type='image/{}'.format(img_format)
     )
