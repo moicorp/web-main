@@ -29,6 +29,16 @@ ja:
     key: 'LinLibertine_RBah'
     name: 'LinLibertine Bold'
     path: 'en/LinLibertine_RBah.ttf'
+  - id: 24
+    type: 'emoji1'
+    key: 'emoji1'
+    name: 'emoji1'
+    path: 'ja/Noto-COLRv1.ttf'
+  - id: 25
+    type: 'emoji2'
+    key: 'emoji2'
+    name: 'emoji2'
+    path: 'ja/NotoColorEmoji.ttf'
 ko:
   - id: 7
     typeface: ''

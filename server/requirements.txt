@@ -1,7 +1,7 @@
-aiohttp==3.6.2
+aiohttp
 async-timeout==3.0.1
 attrs==19.3.0
-cffi==1.13.2
+cffi
 chardet==3.0.4
 cryptography==2.8
 ecode==0.1.5
@@ -11,6 +11,6 @@ idna==2.8
 MarkupSafe==1.1.1
 multidict==4.7.2
 pycparser==2.19
-PyYAML==5.4
+PyYAML>=6.0.1
 six==1.13.0
-yarl==1.4.2
+yarl
